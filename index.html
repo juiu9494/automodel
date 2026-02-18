@@ -1,1 +1,886 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPremium Rimini | Concessionaria di lusso</title>
+    <!-- Font Awesome 5 (CDN) per icone professionale -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter e Playfair Display per un mix moderno ed elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & VARIABILI */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --oro: #C5A059;
+            --oro-scuro: #9E7B48;
+            --nero-profondo: #0A0A0A;
+            --grigio-antracite: #1E1E1E;
+            --grigio-chiaro: #F5F5F5;
+            --bianco-puro: #FFFFFF;
+            --testo-scuro: #222;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--grigio-chiaro);
+            color: var(--testo-scuro);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* BOTTONE ORO */
+        .btn-oro {
+            background: var(--oro);
+            border: none;
+            color: var(--nero-profondo);
+            padding: 14px 36px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 0px;
+            display: inline-block;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .btn-oro:hover {
+            background: transparent;
+            border: 1px solid var(--oro);
+            color: var(--oro);
+        }
+
+        /* HEADER & NAVBAR */
+        .header {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--bianco-puro);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo span {
+            color: var(--oro);
+            font-weight: 400;
+            margin-left: 5px;
+            font-size: 1rem;
+            letter-spacing: 4px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--bianco-puro);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--oro);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--oro);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .header-contacts {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--bianco-puro);
+        }
+
+        .header-contacts i {
+            color: var(--oro);
+            margin-right: 8px;
+        }
+
+        /* HERO SECTION (RIMINI) */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 70%), url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: var(--bianco-puro);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-rimini-tag {
+            color: var(--oro);
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-rimini-tag i {
+            font-size: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: var(--oro);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* BANNER CITTA' */
+        .city-banner {
+            background: var(--nero-profondo);
+            color: var(--bianco-puro);
+            padding: 15px 0;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .city-banner-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .city-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .city-item i {
+            color: var(--oro);
+            font-size: 1.2rem;
+        }
+
+        /* SEZIONE FILTRI / RICERCA */
+        .filter-section {
+            background: var(--bianco-puro);
+            padding: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-item label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: var(--nero-profondo);
+            text-transform: uppercase;
+        }
+
+        .filter-item select, .filter-item input {
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            background: var(--grigio-chiaro);
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .filter-item select:focus, .filter-item input:focus {
+            outline: none;
+            border-color: var(--oro);
+        }
+
+        .filter-btn {
+            background: var(--nero-profondo);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: flex-end;
+        }
+
+        .filter-btn:hover {
+            background: var(--oro);
+            color: var(--nero-profondo);
+        }
+
+        /* GALLERIA AUTO (inventory) */
+        .inventory-section {
+            padding: 80px 0;
+            background: var(--bianco-puro);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--nero-profondo);
+        }
+
+        .section-title p {
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .car-card {
+            background: var(--bianco-puro);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .car-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 40px -10px rgba(197, 160, 89, 0.2);
+            border-color: var(--oro);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--oro);
+            color: var(--nero-profondo);
+            padding: 6px 14px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .car-card:hover img {
+            opacity: 0.9;
+        }
+
+        .car-details {
+            padding: 25px 20px 30px;
+        }
+
+        .car-name {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .car-meta {
+            display: flex;
+            gap: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .car-meta i {
+            color: var(--oro);
+            margin-right: 5px;
+        }
+
+        .car-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--oro-scuro);
+            margin: 20px 0 10px;
+        }
+
+        .car-price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #777;
+        }
+
+        .car-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--nero-profondo);
+            font-weight: 500;
+        }
+
+        .car-location i {
+            color: var(--oro);
+        }
+
+        /* BANNER CONCESSIONARIA RIMINI */
+        .rimini-showroom {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1562516155-e0c1eea59fd3?q=80&w=2071&auto=format&fit=crop') center/cover fixed;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .rimini-showroom h2 {
+            font-size: 3.2rem;
+            color: var(--oro);
+            margin-bottom: 20px;
+        }
+
+        .rimini-showroom p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .showroom-address {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .address-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+        }
+
+        .address-item i {
+            color: var(--oro);
+        }
+
+        /* TEAM E SERVIZI */
+        .services {
+            padding: 80px 0;
+            background: var(--grigio-chiaro);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 20px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            border-color: var(--oro);
+            transform: scale(1.02);
+        }
+
+        .service-card i {
+            font-size: 2.8rem;
+            color: var(--oro);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #555;
+        }
+
+        /* FOOTER PROFESSIONALE */
+        .footer {
+            background: var(--nero-profondo);
+            color: #bbb;
+            padding: 60px 0 20px;
+            border-top: 2px solid var(--oro);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--oro);
+        }
+
+        .footer-news p {
+            margin: 20px 0;
+        }
+
+        .footer form {
+            display: flex;
+            border-bottom: 1px solid var(--oro);
+        }
+
+        .footer input {
+            background: transparent;
+            border: none;
+            padding: 12px 0;
+            color: white;
+            width: 100%;
+        }
+
+        .footer input::placeholder {
+            color: #777;
+        }
+
+        .footer button {
+            background: transparent;
+            border: none;
+            color: var(--oro);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--oro);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .socials a {
+            color: white;
+            background: #222;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .socials a:hover {
+            background: var(--oro);
+            color: black;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .nav-menu {
+                gap: 25px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .city-banner-content {
+                justify-content: center;
+            }
+        }
+
+        /* JAVASCRIPT EFFETTI DINAMICI */
+        .car-card[data-available="false"] {
+            opacity: 0.6;
+            filter: grayscale(0.5);
+        }
+        .car-card[data-available="false"]::before {
+            content: "VENDUTA";
+            position: absolute;
+            top: 30px;
+            left: -30px;
+            background: black;
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(-35deg);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER STICKY PROFESSIONALE -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">AutoPremium<span>RIMINI</span></div>
+                <ul class="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Inventario</a></li>
+                    <li><a href="#">Servizi</a></li>
+                    <li><a href="#">Concessionaria</a></li>
+                    <li><a href="#">Contatti</a></li>
+                </ul>
+                <div class="header-contacts">
+                    <div><i class="fas fa-phone-alt"></i> +39 0541 123456</div>
+                    <div><i class="fas fa-map-marker-alt"></i> Rimini, Viale Regina Elena</div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SEZIONE RIMINI -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-rimini-tag">
+                    <i class="fas fa-map-pin"></i> CONCESSIONARIA ESCLUSIVA RIMINI
+                </div>
+                <h1>L'eleganza <span>su strada</span> tra Riviera e entroterra</h1>
+                <p>Auto selezionate per intenditori. Da decenni il punto di riferimento sulla Riviera Romagnola. Prove su appuntamento, finanziamenti e garanzia.</p>
+                <a href="#" class="btn-oro">Scopri la collezione</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER INFORMAZIONI RIMINI -->
+    <section class="city-banner">
+        <div class="container">
+            <div class="city-banner-content">
+                <div class="city-item"><i class="fas fa-check-circle"></i> Sede principale: Rimini centro mare</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Spedizioni in tutta Italia</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Oltre 200 auto di prestigio</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Assistenza e carrozzeria interna</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTRI DI RICERCA PROFESSIONALI -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-grid">
+                <div class="filter-item">
+                    <label>Marca</label>
+                    <select id="brand-filter">
+                        <option value="">Qualsiasi</option>
+                        <option value="Porsche">Porsche</option>
+                        <option value="Maserati">Maserati</option>
+                        <option value="Ferrari">Ferrari</option>
+                        <option value="Lamborghini">Lamborghini</option>
+                        <option value="Audi">Audi</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>Modello</label>
+                    <input type="text" placeholder="Es. 911, Levante...">
+                </div>
+                <div class="filter-item">
+                    <label>Prezzo max</label>
+                    <select id="price-filter">
+                        <option value="">Nessuna soglia</option>
+                        <option value="50000">Fino a 50.000€</option>
+                        <option value="100000">Fino a 100.000€</option>
+                        <option value="200000">Fino a 200.000€</option>
+                    </select>
+                </div>
+                <button class="filter-btn" id="filterBtn"><i class="fas fa-search" style="margin-right: 8px;"></i>Cerca</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVENTARIO AUTO CON DATI RIMINI (cards) -->
+    <section class="inventory-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Auto di prestigio a Rimini</h2>
+                <p>Selezionate con cura, pronte per un test drive sulla costa</p>
+            </div>
+            <div class="cars-grid" id="carsContainer">
+                <!-- card generate via javascript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOWROOM RIMINI -->
+    <section class="rimini-showroom">
+        <div class="container">
+            <h2>Showroom Rimini Mare</h2>
+            <p>Affacciato sul lungomare Tintori, il nostro spazio espositivo ti accoglie in un ambiente esclusivo. Caffè, riviste d'auto e consulenti a disposizione sette giorni su sette.</p>
+            <div class="showroom-address">
+                <div class="address-item"><i class="fas fa-map-marked-alt"></i> Viale Regina Elena 24, Rimini</div>
+                <div class="address-item"><i class="fas fa-clock"></i> Lun-Dom 09:00 – 20:00</div>
+                <div class="address-item"><i class="fas fa-flag"></i> Parcheggio privato clienti</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIZI DEDICATI -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Servizi esclusivi</h2>
+                <p>Ogni dettaglio pensato per i nostri clienti riminesi e non solo</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><i class="fas fa-hand-holding-usd"></i><h3>Finanziamenti su misura</h3><p>Consulenza dedicata, tassi agevolati, anche per partite IVA.</p></div>
+                <div class="service-card"><i class="fas fa-tools"></i><h3>Officina premium</h3><p>Manutenzione con tecnici specializzati e ricambi originali.</p></div>
+                <div class="service-card"><i class="fas fa-car-side"></i><h3>Test drive sulla riviera</h3><p>Percorsi personalizzati per vivere l'emozione del motore.</p></div>
+                <div class="service-card"><i class="fas fa-shield-alt"></i><h3>Garanzia estesa</h3><p>Tutte le auto includono garanzia 24 mesi, come da normative.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER PROFESSIONALE CON MAPPA MENTALE RIMINI -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-news">
+                    <div class="footer-logo">AutoPremium<span>RIMINI</span></div>
+                    <p>Dal 1985 la tua concessionaria di fiducia a Rimini. Auto nuove e usate di alta gamma, trasparenza e professionalità.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="La tua email per novità" required>
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+                <div class="footer-links">
+                    <h4>Esplora</h4>
+                    <ul>
+                        <li><a href="#">Inventario Rimini</a></li>
+                        <li><a href="#">Auto in arrivo</a></li>
+                        <li><a href="#">Eventi esclusivi</a></li>
+                        <li><a href="#">Sponsorizzazioni</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Rimini e dintorni</h4>
+                    <ul>
+                        <li><a href="#">Filiale Riccione</a></li>
+                        <li><a href="#">Filiale San Marino</a></li>
+                        <li><a href="#">Convention Riviera</a></li>
+                        <li><a href="#">Auto d'epoca</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +39 0541 123456</li>
+                        <li><i class="fas fa-envelope"></i> info@autopremium.rimini.it</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Viale Regina Elena 24, Rimini</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AutoPremium Rimini - P.IVA 01234560444 - Tutti i diritti riservati.</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT JAVASPERTO PER DINAMICITA' -->
+    <script>
+        (function() {
+            // DATI DELLE AUTO (RIMINI)
+            const cars = [
+                { brand: 'Porsche', model: '911 Turbo S', year: 2023, km: 3400, price: 289000, img: 'https://images.unsplash.com/photo-1614162691532-0d1436f4a80a?q=80&w=1974&auto=format&fit=crop', available: true, location: 'Rimini centro' },
+                { brand: 'Maserati', model: 'Levante Trofeo', year: 2022, km: 12000, price: 179000, img: 'https://images.unsplash.com/photo-1580274455191-1c62234ad0d9?q=80&w=1964&auto=format&fit=crop', available: true, location: 'Rimini mare' },
+                { brand: 'Ferrari', model: 'F8 Tributo', year: 2021, km: 5300, price: 279000, img: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=2070&auto=format&fit=crop', available: false, location: 'San Marino' },
+                { brand: 'Lamborghini', model: 'Urus', year: 2023, km: 1500, price: 315000, img: 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=1974&auto=format&fit=crop', available: true, location: 'Rimini' },
+                { brand: 'Audi', model: 'RS6 Avant', year: 2022, km: 8800, price: 139000, img: 'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?q=80&w=1974&auto=format&fit=crop', available: true, location: 'Rimini' },
+                { brand: 'Bentley', model: 'Continental GT', year: 2023, km: 200, price: 319000, img: 'https://images.unsplash.com/photo-1621139263187-60408f13f5fb?q=80&w=1974&auto=format&fit=crop', available: true, location: 'Rimini expo' },
+                { brand: 'Porsche', model: 'Panamera 4S', year: 2022, km: 7000, price: 148000, img: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop', available: true, location: 'Rimini' }
+            ];
+
+            const container = document.getElementById('carsContainer');
+            
+            function renderCars(filterBrand = '') {
+                container.innerHTML = '';
+                const filtered = cars.filter(c => filterBrand ? c.brand.toLowerCase().includes(filterBrand.toLowerCase()) : true);
+                filtered.forEach(car => {
+                    const card = document.createElement('div');
+                    card.className = 'car-card';
+                    card.setAttribute('data-available', car.available);
+                    card.innerHTML = `
+                        <img src="${car.img}" alt="${car.brand} ${car.model}" loading="lazy">
+                        <div class="card-badge">${car.available ? 'DISPONIBILE' : 'VENDUTA'}</div>
+                        <div class="car-details">
+                            <h3 class="car-name">${car.brand} ${car.model}</h3>
+                            <div class="car-meta">
+                                <span><i class="fas fa-calendar-alt"></i> ${car.year}</span>
+                                <span><i class="fas fa-tachometer-alt"></i> ${car.km.toLocaleString()} km</span>
+                            </div>
+                            <div class="car-price">€ ${car.price.toLocaleString()} <small>IVA inclusa</small></div>
+                            <div class="car-location"><i class="fas fa-map-marker-alt"></i> ${car.location}</div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+            renderCars();
+
+            // filtro semplificato (solo brand)
+            document.getElementById('filterBtn').addEventListener('click', function() {
+                const brand = document.getElementById('brand-filter').value;
+                renderCars(brand);
+            });
+
+            // newsletter (semplice alert)
+            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Grazie per esserti iscritto alla newsletter di AutoPremium Rimini! Riceverai novità e anteprime esclusive.');
+                this.reset();
+            });
+
+            // effetto click sulla card
+            document.querySelectorAll('.car-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    alert('Richiesta informazioni per questa vettura. Un nostro consulente di Rimini ti contatterà.');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
