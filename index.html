@@ -2,11 +2,11 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>AutoPremium Rimini | Concessionaria di lusso</title>
-    <!-- Font Awesome 5 (CDN) per icone professionale -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Inter e Playfair Display per un mix moderno ed elegante -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* RESET & VARIABILI */
@@ -71,9 +71,9 @@
             color: var(--oro);
         }
 
-        /* HEADER & NAVBAR */
+        /* HEADER & NAVBAR con menu mobile */
         .header {
-            background-color: rgba(10, 10, 10, 0.95);
+            background-color: rgba(10, 10, 10, 0.98);
             backdrop-filter: blur(8px);
             position: sticky;
             top: 0;
@@ -85,24 +85,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
+            position: relative;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--bianco-puro);
             font-family: 'Playfair Display', serif;
+            line-height: 1;
         }
 
         .logo span {
             color: var(--oro);
             font-weight: 400;
             margin-left: 5px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             letter-spacing: 4px;
+            display: inline-block;
         }
 
+        /* Menu desktop */
         .nav-menu {
             display: flex;
             gap: 48px;
@@ -144,6 +148,7 @@
             align-items: center;
             gap: 20px;
             color: var(--bianco-puro);
+            font-size: 0.9rem;
         }
 
         .header-contacts i {
@@ -151,7 +156,44 @@
             margin-right: 8px;
         }
 
-        /* HERO SECTION (RIMINI) */
+        /* Hamburger menu - nascosto su desktop */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--oro);
+            margin: 4px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Mobile overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* HERO SECTION */
         .hero {
             height: 90vh;
             background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 70%), url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
@@ -174,6 +216,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .hero-rimini-tag i {
@@ -219,6 +262,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 0.95rem;
         }
 
         .city-item i {
@@ -226,7 +270,7 @@
             font-size: 1.2rem;
         }
 
-        /* SEZIONE FILTRI / RICERCA */
+        /* SEZIONE FILTRI */
         .filter-section {
             background: var(--bianco-puro);
             padding: 40px 0;
@@ -263,6 +307,7 @@
             font-weight: 400;
             transition: var(--transition);
             cursor: pointer;
+            width: 100%;
         }
 
         .filter-item select:focus, .filter-item input:focus {
@@ -287,7 +332,7 @@
             color: var(--nero-profondo);
         }
 
-        /* GALLERIA AUTO (inventory) */
+        /* GALLERIA AUTO */
         .inventory-section {
             padding: 80px 0;
             background: var(--bianco-puro);
@@ -373,6 +418,7 @@
             color: #777;
             font-size: 0.9rem;
             margin-bottom: 15px;
+            flex-wrap: wrap;
         }
 
         .car-meta i {
@@ -405,7 +451,7 @@
             color: var(--oro);
         }
 
-        /* BANNER CONCESSIONARIA RIMINI */
+        /* BANNER SHOWROOM */
         .rimini-showroom {
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1562516155-e0c1eea59fd3?q=80&w=2071&auto=format&fit=crop') center/cover fixed;
             padding: 100px 0;
@@ -444,7 +490,7 @@
             color: var(--oro);
         }
 
-        /* TEAM E SERVIZI */
+        /* SERVIZI */
         .services {
             padding: 80px 0;
             background: var(--grigio-chiaro);
@@ -485,7 +531,7 @@
             color: #555;
         }
 
-        /* FOOTER PROFESSIONALE */
+        /* FOOTER */
         .footer {
             background: var(--nero-profondo);
             color: #bbb;
@@ -572,6 +618,7 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: 20px;
         }
 
         .socials {
@@ -596,40 +643,9 @@
             color: black;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .nav-menu {
-                gap: 25px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .city-banner-content {
-                justify-content: center;
-            }
-        }
-
-        /* JAVASCRIPT EFFETTI DINAMICI */
+        /* STATO AUTO VENDUTA */
         .car-card[data-available="false"] {
-            opacity: 0.6;
+            opacity: 0.7;
             filter: grayscale(0.5);
         }
         .car-card[data-available="false"]::before {
@@ -645,28 +661,247 @@
             letter-spacing: 2px;
             z-index: 10;
         }
+
+        /* ========== MEDIA QUERY COMPLETE PER MOBILE ========== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .container {
+                padding: 0 30px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .header-contacts {
+                display: none; /* Nascondiamo i contatti testuali su tablet piccolo */
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Container padding ridotto */
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Header mobile */
+            .navbar {
+                padding: 12px 0;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+            .logo span {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+            }
+
+            /* Hamburger visibile */
+            .hamburger {
+                display: flex;
+            }
+
+            /* Menu mobile nascosto di default */
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--nero-profondo);
+                flex-direction: column;
+                padding: 100px 30px 40px;
+                gap: 25px;
+                transition: right 0.4s ease;
+                z-index: 999;
+                border-left: 1px solid var(--oro);
+                overflow-y: auto;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu a {
+                font-size: 1.2rem;
+                display: block;
+                padding: 10px 0;
+            }
+
+            .nav-menu a::after {
+                display: none;
+            }
+
+            /* Hero section */
+            .hero {
+                height: 80vh;
+                min-height: 600px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-rimini-tag {
+                font-size: 0.8rem;
+            }
+
+            /* City banner */
+            .city-banner-content {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .city-item {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Filtri */
+            .filter-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+
+            /* Inventory */
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .cars-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            /* Showroom */
+            .rimini-showroom {
+                padding: 60px 0;
+            }
+
+            .rimini-showroom h2 {
+                font-size: 2.2rem;
+            }
+
+            .showroom-address {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .address-item {
+                font-size: 1rem;
+            }
+
+            /* Services */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Footer */
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .socials {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-rimini-tag {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+            }
+
+            .btn-oro {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .car-price {
+                font-size: 1.5rem;
+            }
+
+            .car-name {
+                font-size: 1.4rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.9rem;
+            }
+        }
+
+        /* Animazione hamburger */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
     </style>
 </head>
 <body>
-    <!-- HEADER STICKY PROFESSIONALE -->
+    <!-- HEADER CON MENU HAMBURGER PER MOBILE -->
     <header class="header">
         <div class="container">
             <nav class="navbar">
                 <div class="logo">AutoPremium<span>RIMINI</span></div>
-                <ul class="nav-menu">
+                
+                <!-- Hamburger Icon -->
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <!-- Menu principale -->
+                <ul class="nav-menu" id="navMenu">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Inventario</a></li>
                     <li><a href="#">Servizi</a></li>
                     <li><a href="#">Concessionaria</a></li>
                     <li><a href="#">Contatti</a></li>
                 </ul>
+
+                <!-- Contatti desktop -->
                 <div class="header-contacts">
                     <div><i class="fas fa-phone-alt"></i> +39 0541 123456</div>
-                    <div><i class="fas fa-map-marker-alt"></i> Rimini, Viale Regina Elena</div>
+                    <div><i class="fas fa-map-marker-alt"></i> Rimini</div>
                 </div>
             </nav>
         </div>
     </header>
+
+    <!-- Overlay per mobile -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
 
     <!-- HERO SEZIONE RIMINI -->
     <section class="hero">
@@ -769,7 +1004,7 @@
         </div>
     </section>
 
-    <!-- FOOTER PROFESSIONALE CON MAPPA MENTALE RIMINI -->
+    <!-- FOOTER PROFESSIONALE -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -820,10 +1055,49 @@
         </div>
     </footer>
 
-    <!-- SCRIPT JAVASPERTO PER DINAMICITA' -->
+    <!-- SCRIPT JAVASCRIPT (mobile menu + filtri) -->
     <script>
         (function() {
-            // DATI DELLE AUTO (RIMINI)
+            // Mobile Menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const overlay = document.getElementById('mobileOverlay');
+            
+            function toggleMenu() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                
+                // Blocca scroll body quando menu aperto
+                if (navMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+            
+            // Chiudi menu cliccando su overlay
+            overlay.addEventListener('click', toggleMenu);
+            
+            // Chiudi menu cliccando su un link (opzionale)
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // Gestione resize: chiudi menu se si passa a desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+
+            // DATI AUTO
             const cars = [
                 { brand: 'Porsche', model: '911 Turbo S', year: 2023, km: 3400, price: 289000, img: 'https://images.unsplash.com/photo-1614162691532-0d1436f4a80a?q=80&w=1974&auto=format&fit=crop', available: true, location: 'Rimini centro' },
                 { brand: 'Maserati', model: 'Levante Trofeo', year: 2022, km: 12000, price: 179000, img: 'https://images.unsplash.com/photo-1580274455191-1c62234ad0d9?q=80&w=1964&auto=format&fit=crop', available: true, location: 'Rimini mare' },
@@ -861,24 +1135,25 @@
             }
             renderCars();
 
-            // filtro semplificato (solo brand)
+            // Filtro semplice
             document.getElementById('filterBtn').addEventListener('click', function() {
                 const brand = document.getElementById('brand-filter').value;
                 renderCars(brand);
             });
 
-            // newsletter (semplice alert)
+            // Newsletter
             document.getElementById('newsletterForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert('Grazie per esserti iscritto alla newsletter di AutoPremium Rimini! Riceverai novità e anteprime esclusive.');
                 this.reset();
             });
 
-            // effetto click sulla card
-            document.querySelectorAll('.car-card').forEach(card => {
-                card.addEventListener('click', () => {
+            // Click su card
+            document.addEventListener('click', function(e) {
+                const card = e.target.closest('.car-card');
+                if (card) {
                     alert('Richiesta informazioni per questa vettura. Un nostro consulente di Rimini ti contatterà.');
-                });
+                }
             });
         })();
     </script>
